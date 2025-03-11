@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crocodile Facts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0f7e0;
+            color: #2e7d32;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .fact-display {
+            background-color: #a5d6a7;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            transition: opacity 0.5s ease;
+        }
+
+        button {
+            background-color: #388e3c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #2e7d32;
+        }
+
+        @media (max-width: 600px) {
+            button {
+                width: 100%;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Crocodile Facts</h1>
+        <div id="fact-display" class="fact-display">Click the button to see a crocodile fact!</div>
+        <button id="new-fact-button">Show Random Fact</button>
+        <button id="share-button">Share on Twitter</button>
+    </div>
+    <script>
+        const facts = [
+            "Crocodiles can live for over 70 years in the wild.",
+            "They have the strongest bite of any animal, with a force of over 3,700 pounds per square inch.",
+            "Crocodiles can hold their breath underwater for up to an hour.",
+            "They are more closely related to birds than to other reptiles.",
+            "Crocodiles can run up to 15 miles per hour on land for short distances.",
+            "Their eyes have a special membrane that allows them to see clearly underwater.",
+            "Crocodiles can produce a wide range of vocalizations, including growls, grunts, and hisses.",
+            "They are ectothermic, meaning they rely on external sources to regulate their body temperature.",
+            "Crocodiles have a unique way of swimming, using their powerful tails to propel themselves.",
+            "They can consume up to half of their body weight in a single meal.",
+            "Crocodiles have a special valve in their throat that allows them to swallow prey underwater.",
+            "They are known to be very territorial and will defend their nesting sites aggressively.",
+            "Crocodiles can see in color, which helps them spot prey in their environment.",
+            "They have been around for over 200 million years, making them one of the oldest living species.",
+            "Crocodiles can regenerate lost teeth, replacing them throughout their lives."
+        ];
+
+        const factDisplay = document.getElementById('fact-display');
+        const newFactButton = document.getElementById('new-fact-button');
+        const shareButton = document.getElementById('share-button');
+
+        newFactButton.addEventListener('click', () => {
+            const randomIndex = Math.floor(Math.random() * facts.length);
+            factDisplay.style.opacity = 0; // Fade out
+            setTimeout(() => {
+                factDisplay.textContent = facts[randomIndex];
+                factDisplay.style.opacity = 1; // Fade in
+            }, 500);
+        });
+
+        shareButton.addEventListener('click', () => {
+            const factToShare = factDisplay.textContent;
+            const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(factToShare)}`;
+            window.open(twitterUrl, '_blank');
+        });
+    </script>
+</body>
+</html>
